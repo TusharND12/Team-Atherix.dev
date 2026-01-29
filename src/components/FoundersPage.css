@@ -13,65 +13,48 @@
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background: #060608;
+  background: #0a0a0f;
 }
 
 .founders-bg-grid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black, transparent 70%);
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 70% 50% at 50% 0%, black 20%, transparent 75%);
 }
 
 .founders-bg-glow {
   position: absolute;
   border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.4;
-  animation: founders-glow-pulse 8s ease-in-out infinite;
+  filter: blur(100px);
+  opacity: 0;
 }
 
 .founders-bg-glow-1 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, transparent 70%);
-  top: -200px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+  top: -150px;
   left: 50%;
   transform: translateX(-50%);
-  animation-delay: 0s;
 }
 
 .founders-bg-glow-2 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 70%);
-  bottom: 10%;
-  right: 10%;
-  animation-delay: -4s;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+  bottom: 15%;
+  right: 15%;
 }
 
 .founders-bg-noise {
   position: absolute;
   inset: 0;
-  opacity: 0.03;
+  opacity: 0.02;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-@keyframes founders-glow-pulse {
-  0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(1); }
-  50% { opacity: 0.5; transform: translateX(-50%) scale(1.05); }
-}
-
-.founders-bg-glow-2 {
-  animation-name: founders-glow-pulse-2;
-}
-
-@keyframes founders-glow-pulse-2 {
-  0%, 100% { opacity: 0.12; }
-  50% { opacity: 0.22; }
 }
 
 /* --- Header --- */
@@ -84,32 +67,34 @@
 
 .founders-company {
   font-family: 'Outfit', sans-serif;
-  font-weight: 600;
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.7);
-  margin: 0 0 0.5rem;
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 0.6rem;
   animation: founders-fade-up 0.6s ease-out;
 }
 
 .founders-label {
   display: inline-block;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #6366f1;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
   animation: founders-fade-up 0.6s ease-out;
 }
 
 .founders-title {
   font-family: 'Outfit', sans-serif;
-  font-weight: 700;
-  font-size: clamp(2.25rem, 6vw, 3.75rem);
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  margin: 0 0 1rem;
+  font-weight: 600;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0 0 0.85rem;
+  color: #fafafa;
   animation: founders-fade-up 0.6s ease-out 0.05s both;
 }
 
@@ -118,25 +103,17 @@
 }
 
 .founders-title-gradient {
-  background: linear-gradient(135deg, #a78bfa 0%, #ec4899 50%, #6366f1 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: founders-gradient-shift 6s ease-in-out infinite;
-}
-
-@keyframes founders-gradient-shift {
-  0%, 100% { background-position: 0% center; }
-  50% { background-position: 100% center; }
+  color: #e4e4e7;
+  font-weight: 500;
 }
 
 .founders-subtitle {
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
   color: #71717a;
-  max-width: 420px;
+  max-width: 440px;
   margin: 0 auto;
-  line-height: 1.5;
+  line-height: 1.6;
+  font-weight: 400;
   animation: founders-fade-up 0.6s ease-out 0.1s both;
 }
 
@@ -212,34 +189,23 @@
 }
 
 .founder-card-glow {
-  position: absolute;
-  inset: -1px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.1), transparent 50%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: -1;
-  filter: blur(12px);
-}
-
-.founder-card:hover .founder-card-glow {
-  opacity: 1;
+  display: none;
 }
 
 .founder-card-inner {
   position: relative;
   height: 100%;
   min-height: 380px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
   overflow: hidden;
-  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .founder-card:hover .founder-card-inner {
-  border-color: rgba(255, 255, 255, 0.12);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
 }
 
 /* Full-card background image */
@@ -257,7 +223,7 @@
 }
 
 .founder-card:hover .founder-card-bg-img {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .founder-card-bg-initials {
@@ -286,6 +252,46 @@
   pointer-events: none;
 }
 
+/* Role badge at top-left over image */
+.founder-role-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+  margin: 0;
+  padding: 0.4rem 0.85rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  animation: founder-badge-in 0.5s ease-out both;
+  animation-delay: calc(var(--delay) + 0.2s);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.founder-card:hover .founder-role-badge {
+  background: rgba(0, 0, 0, 0.65);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+@keyframes founder-badge-in {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 /* Content overlaid at bottom */
 .founder-card-content {
   position: absolute;
@@ -300,7 +306,18 @@
   z-index: 1;
 }
 
-/* --- Info --- */
+@keyframes founder-text-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Info (staggered text animation) --- */
 .founder-role {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.7rem;
@@ -317,6 +334,8 @@
   margin: 0 0 0.4rem;
   color: #fafafa;
   line-height: 1.2;
+  animation: founder-text-in 0.5s ease-out both;
+  animation-delay: calc(var(--delay) + 0.25s);
 }
 
 .founder-bio {
@@ -325,6 +344,8 @@
   line-height: 1.45;
   margin: 0 0 0.75rem;
   max-width: 100%;
+  animation: founder-text-in 0.5s ease-out both;
+  animation-delay: calc(var(--delay) + 0.33s);
 }
 
 .founder-contact {
@@ -333,6 +354,8 @@
   align-items: center;
   gap: 0.2rem;
   margin-bottom: 0.75rem;
+  animation: founder-text-in 0.5s ease-out both;
+  animation-delay: calc(var(--delay) + 0.41s);
 }
 
 .founder-email,
@@ -347,7 +370,7 @@
 
 .founder-email:hover,
 .founder-phone:hover {
-  color: #a78bfa;
+  color: #e4e4e7;
 }
 
 .founder-social {
@@ -356,6 +379,8 @@
   align-items: center;
   gap: 0.5rem;
   flex-wrap: wrap;
+  animation: founder-text-in 0.5s ease-out both;
+  animation-delay: calc(var(--delay) + 0.49s);
 }
 
 .founder-social-link {
@@ -371,72 +396,8 @@
 }
 
 .founder-social-link:hover {
-  color: #a78bfa;
-  background: rgba(167, 139, 250, 0.15);
-  transform: scale(1.1);
-}
-
-/* --- Footer --- */
-/* --- Technologies --- */
-.founders-tech {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  margin-top: clamp(3rem, 8vw, 5rem);
-  padding: clamp(2rem, 5vw, 3rem) 0;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  animation: founders-fade-up 0.6s ease-out 0.2s both;
-}
-
-.founders-tech-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #6366f1;
-  margin: 0 0 1.25rem;
-}
-
-.founders-tech-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.6rem;
-}
-
-.founders-tech-pill {
-  display: inline-block;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  color: rgba(255, 255, 255, 0.85);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 999px;
-  transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
-  animation: founders-tech-in 0.5s ease-out calc(0.1s + var(--i) * 0.04s) both;
-}
-
-.founders-tech-pill:hover {
-  color: #fafafa;
-  background: rgba(99, 102, 241, 0.12);
-  border-color: rgba(99, 102, 241, 0.35);
-  box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
-  transform: translateY(-2px);
-}
-
-@keyframes founders-tech-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  color: #e4e4e7;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* --- Footer --- */
@@ -468,18 +429,18 @@
 .founders-cta {
   display: inline-block;
   font-family: 'Outfit', sans-serif;
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: #a78bfa;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #e4e4e7;
   text-decoration: none;
-  padding: 0.6rem 1.5rem;
-  border: 1px solid rgba(167, 139, 250, 0.4);
-  border-radius: 999px;
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  padding: 0.55rem 1.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .founders-cta:hover {
-  background: rgba(167, 139, 250, 0.15);
-  color: #e9d5ff;
-  border-color: rgba(167, 139, 250, 0.6);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fafafa;
+  border-color: rgba(255, 255, 255, 0.3);
 }

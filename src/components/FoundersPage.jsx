@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { founders } from '../data/founders'
-import { technologies } from '../data/technologies'
 import './FoundersPage.css'
 
 const SocialIcon = ({ type, href }) => {
@@ -88,8 +87,8 @@ function FounderCard({ founder, index }) {
           )}
         </div>
         <div className="founder-card-overlay" aria-hidden />
+        <p className="founder-role founder-role-badge">{role}</p>
         <div className="founder-card-content">
-          <p className="founder-role">{role}</p>
           <h3 className="founder-name">{name}</h3>
           <p className="founder-bio">{bio}</p>
           <div className="founder-contact">
@@ -141,21 +140,6 @@ export default function FoundersPage() {
         {founders.map((founder, i) => (
           <FounderCard key={founder.id} founder={founder} index={i} />
         ))}
-      </section>
-
-      <section className="founders-tech" aria-label="Technologies we use">
-        <p className="founders-tech-label">Technologies we use</p>
-        <div className="founders-tech-list">
-          {technologies.map((tech, i) => (
-            <span
-              key={tech}
-              className="founders-tech-pill"
-              style={{ '--i': i }}
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
       </section>
 
       <footer className="founders-footer">
