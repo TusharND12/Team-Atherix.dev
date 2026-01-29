@@ -22,9 +22,10 @@
   margin: 0 calc(-1 * clamp(1.25rem, 4vw, 2.5rem)) 0;
   padding-left: clamp(1.25rem, 4vw, 2.5rem);
   padding-right: clamp(1.25rem, 4vw, 2.5rem);
-  background: rgba(12, 12, 16, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(12, 12, 16, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transform: translateZ(0);
 }
 
 .founders-nav-logo {
@@ -78,26 +79,28 @@
   z-index: 0;
   background: #0a0a0f;
   overflow: hidden;
+  contain: layout style paint;
+  transform: translateZ(0);
 }
 
 @keyframes founders-bg-float-1 {
   0%, 100% {
-    transform: translate(-50%, 0) scale(1);
+    transform: translate3d(-50%, 0, 0) scale(1);
     opacity: 0.5;
   }
   50% {
-    transform: translate(calc(-50% + 40px), 30px) scale(1.05);
+    transform: translate3d(calc(-50% + 40px), 30px, 0) scale(1.05);
     opacity: 0.7;
   }
 }
 
 @keyframes founders-bg-float-2 {
   0%, 100% {
-    transform: translate(0, 0);
+    transform: translate3d(0, 0, 0);
     opacity: 0.4;
   }
   50% {
-    transform: translate(-30px, -20px);
+    transform: translate3d(-30px, -20px, 0);
     opacity: 0.6;
   }
 }
@@ -120,12 +123,16 @@
   background-size: 80px 80px;
   mask-image: radial-gradient(ellipse 70% 50% at 50% 0%, black 20%, transparent 75%);
   animation: founders-bg-grid-pulse 8s ease-in-out infinite;
+  will-change: opacity;
+  transform: translateZ(0);
 }
 
 .founders-bg-glow {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
+  filter: blur(80px);
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .founders-bg-glow-1 {
@@ -162,6 +169,8 @@
   animation: founders-bg-box-float 12s ease-in-out infinite;
   animation-delay: calc(var(--i) * -1.2s);
   opacity: 0.85;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .founders-bg-box:nth-child(1) { left: 12%; top: 18%; }
@@ -177,19 +186,19 @@
 
 @keyframes founders-bg-box-float {
   0%, 100% {
-    transform: translate(0, 0) rotate(0deg);
+    transform: translate3d(0, 0, 0) rotate(0deg);
     opacity: 0.75;
   }
   25% {
-    transform: translate(15px, -20px) rotate(90deg);
+    transform: translate3d(15px, -20px, 0) rotate(90deg);
     opacity: 1;
   }
   50% {
-    transform: translate(-10px, 10px) rotate(180deg);
+    transform: translate3d(-10px, 10px, 0) rotate(180deg);
     opacity: 0.8;
   }
   75% {
-    transform: translate(-20px, -10px) rotate(270deg);
+    transform: translate3d(-20px, -10px, 0) rotate(270deg);
     opacity: 0.95;
   }
 }
@@ -333,11 +342,11 @@
 @keyframes founders-fade-up {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translate3d(0, 12px, 0);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -388,16 +397,19 @@
   height: 100%;
   min-height: 0;
   animation: founders-card-in 0.6s ease-out var(--delay, 0s) both;
+  content-visibility: auto;
+  contain-intrinsic-block-size: 400px;
+  transform: translateZ(0);
 }
 
 @keyframes founders-card-in {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translate3d(0, 20px, 0);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -412,8 +424,10 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   overflow: hidden;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  contain: layout style paint;
+  transform: translateZ(0);
 }
 
 .founder-card:hover .founder-card-inner {
@@ -432,11 +446,12 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.4s ease;
+  transform: translateZ(0);
 }
 
 .founder-card:hover .founder-card-bg-img {
-  transform: scale(1.03);
+  transform: scale(1.03) translateZ(0);
 }
 
 .founder-card-bg-initials {
@@ -647,6 +662,182 @@
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Company card (debit-card style) */
+.founders-footer-card-wrap {
+  margin-bottom: 2.5rem;
+}
+
+.founders-footer-card-title {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 0.75rem;
+  text-align: center;
+}
+
+.founders-footer-card {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 1.25rem;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(0, 0, 0, 0.15) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.founders-footer-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.5), rgba(139, 92, 246, 0.5));
+  border-radius: 16px 16px 0 0;
+}
+
+.founders-footer-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 65%,
+    transparent 100%
+  );
+  transform: translateX(-100%) skewX(-18deg);
+  pointer-events: none;
+  border-radius: 16px;
+  transition: none;
+}
+
+.founders-footer-card:hover::after {
+  animation: founders-card-shine 0.8s ease-out forwards;
+}
+
+@keyframes founders-card-shine {
+  to {
+    transform: translateX(200%) skewX(-18deg);
+  }
+}
+
+.founders-footer-card-chip {
+  width: 36px;
+  height: 28px;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #d4af37 0%, #c9a227 40%, #b8960c 100%);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.founders-footer-card-brand {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  color: #fafafa;
+  margin: 0 0 0.2rem;
+}
+
+.founders-footer-card-tagline {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 0.6rem;
+}
+
+.founders-footer-card-headline {
+  font-size: 0.85rem;
+  color: #a5b4fc;
+  margin: 0 0 0.5rem;
+  font-weight: 500;
+}
+
+.founders-footer-card-metrics {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 1rem;
+  letter-spacing: 0.02em;
+}
+
+.founders-footer-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.founders-footer-card-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.founders-footer-card-phone,
+.founders-footer-card-website {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.founders-footer-card-phone:hover,
+.founders-footer-card-website:hover {
+  color: #fafafa;
+}
+
+.founders-footer-card-website {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.founders-footer-card-qr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.founders-footer-card-qr-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 6px;
+  padding: 4px;
+}
+
+.founders-footer-card-qr-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.founders-footer-card-motto {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.45;
+  margin: 0;
+  font-style: italic;
+}
+
+@media (max-width: 420px) {
+  .founders-footer-card {
+    padding: 1.25rem 1.25rem 1rem;
+  }
 }
 
 .founders-footer-top {

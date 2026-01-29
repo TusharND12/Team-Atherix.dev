@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, memo } from 'react'
 import { founders } from '../data/founders'
 import { site } from '../data/site'
 import './FoundersPage.css'
 
-function Typewriter({ text }) {
+const Typewriter = memo(function Typewriter({ text }) {
   const [display, setDisplay] = useState('')
   const [index, setIndex] = useState(0)
   const [isDeleting, setIsDeleting] = useState(false)
@@ -48,7 +48,7 @@ function Typewriter({ text }) {
       <span className="founders-typewriter-cursor" aria-hidden>|</span>
     </span>
   )
-}
+})
 
 const SocialIcon = ({ type, href }) => {
   if (!href) return null
@@ -95,7 +95,7 @@ const SocialIcon = ({ type, href }) => {
   )
 }
 
-function FounderCard({ founder, index }) {
+const FounderCard = memo(function FounderCard({ founder, index }) {
   const { name, role, bio, quote, email, phone, social, image } = founder
   const [imageError, setImageError] = useState(false)
   const showImage = image && !imageError
@@ -164,7 +164,7 @@ function FounderCard({ founder, index }) {
       </div>
     </article>
   )
-}
+})
 
 export default function FoundersPage() {
   const scrollToTeam = () => document.getElementById('team')?.scrollIntoView({ behavior: 'smooth' })
@@ -228,6 +228,39 @@ export default function FoundersPage() {
       </section>
 
       <footer id="contact" className="founders-footer">
+        {site.card && (
+          <div className="founders-footer-card-wrap">
+            {site.card.title && (
+              <h2 className="founders-footer-card-title">{site.card.title}</h2>
+            )}
+            <div className="founders-footer-card" aria-label="Company card">
+              <div className="founders-footer-card-chip" aria-hidden />
+              <p className="founders-footer-card-brand">{site.card.brand}</p>
+              <p className="founders-footer-card-tagline">{site.card.tagline}</p>
+              <p className="founders-footer-card-headline">{site.card.headline}</p>
+              <p className="founders-footer-card-metrics">{site.card.metrics}</p>
+              <div className="founders-footer-card-bottom">
+                <div className="founders-footer-card-contact">
+                  <a href={`tel:${site.card.phone.replace(/\D/g, '')}`} className="founders-footer-card-phone">
+                    {site.card.phone}
+                  </a>
+                  <a href={`https://${site.card.website}`} target="_blank" rel="noopener noreferrer" className="founders-footer-card-website">
+                    {site.card.website}
+                  </a>
+                </div>
+                {site.card.qrCode && (
+                  <div className="founders-footer-card-qr">
+                    <img src={site.card.qrCode} alt="QR code" className="founders-footer-card-qr-img" width={80} height={80} />
+                    {site.card.qrLabel && (
+                      <span className="founders-footer-card-qr-label">{site.card.qrLabel}</span>
+                    )}
+                  </div>
+                )}
+              </div>
+              <p className="founders-footer-card-motto">{site.card.motto}</p>
+            </div>
+          </div>
+        )}
         <div className="founders-footer-top">
           <div className="founders-footer-brand-block">
             <p className="founders-footer-brand">{site.companyName}</p>

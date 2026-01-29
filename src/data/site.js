@@ -8,6 +8,17 @@ export const site = {
   stats: '4 founders · One mission',
   contactEmail: 'admin@atherix.dev',
   copyright: '© 2026 Team Atherix',
-  // Placeholder labels for "As seen in" – replace with real logo image URLs when you have them
+  card: {
+    title: 'Company Card',
+    brand: 'ATHERIX.DEV',
+    tagline: 'YOUR DREAM · WE DEPLOY',
+    headline: 'Production-ready AI in 24 hours.',
+    phone: '+91 93229 73362',
+    website: 'atherix.dev',
+    metrics: '20+ Projects · 24hr Delivery · 10+ Clients',
+    motto: 'Strategy is common. Execution is rare. We specialize in execution.',
+    qrCode: '/qr-code.png',
+    qrLabel: 'Scan to see our work',
+  },
   trustLogos: [], // e.g. ['/logos/techcrunch.svg', '/logos/forbes.svg']
 }
