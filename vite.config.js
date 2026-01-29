@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  // GitHub Pages: https://<user>.github.io/Team-Atherix.dev/
-  base: '/Team-Atherix.dev/',
+  // Works on GitHub Pages and local; assets load relative to current path
+  base: './',
 })
