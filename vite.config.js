@@ -3,5 +3,6 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: './',
+  // GitHub Pages: https://<user>.github.io/Team-Atherix.dev/
+  base: '/Team-Atherix.dev/',
 })
