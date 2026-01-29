@@ -1,7 +1,54 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { founders } from '../data/founders'
 import { site } from '../data/site'
 import './FoundersPage.css'
+
+function Typewriter({ text }) {
+  const [display, setDisplay] = useState('')
+  const [index, setIndex] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  useEffect(() => {
+    if (!text) return
+    const fullText = text
+    const typeSpeed = isDeleting ? 50 : 100
+    const pauseAtEnd = 2000
+    const pauseAtStart = 500
+
+    let delay = typeSpeed
+    if (!isDeleting && index === fullText.length) delay = pauseAtEnd
+    else if (isDeleting && index === 0) delay = pauseAtStart
+
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        if (index < fullText.length) {
+          setDisplay(fullText.slice(0, index + 1))
+          setIndex(index + 1)
+        } else {
+          setIsDeleting(true)
+          setIndex(fullText.length - 1)
+          setDisplay(fullText.slice(0, fullText.length - 1))
+        }
+      } else {
+        if (index > 0) {
+          setIndex(index - 1)
+          setDisplay(fullText.slice(0, index - 1))
+        } else {
+          setIsDeleting(false)
+        }
+      }
+    }, delay)
+
+    return () => clearTimeout(timeout)
+  }, [text, index, isDeleting])
+
+  return (
+    <span className="founders-typewriter">
+      <span className="founders-typewriter-text">{display}</span>
+      <span className="founders-typewriter-cursor" aria-hidden>|</span>
+    </span>
+  )
+}
 
 const SocialIcon = ({ type, href }) => {
   if (!href) return null
@@ -89,7 +136,9 @@ function FounderCard({ founder, index }) {
           )}
         </div>
         <div className="founder-card-overlay" aria-hidden />
-        <p className="founder-role founder-role-badge">{role}</p>
+        <p className="founder-role founder-role-badge">
+          <Typewriter text={role} />
+        </p>
         <div className="founder-card-content">
           <h3 className="founder-name">{name}</h3>
           <p className="founder-bio">{bio}</p>
@@ -127,6 +176,11 @@ export default function FoundersPage() {
         <div className="founders-bg-grid" />
         <div className="founders-bg-glow founders-bg-glow-1" />
         <div className="founders-bg-glow founders-bg-glow-2" />
+        <div className="founders-bg-boxes" aria-hidden>
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
+            <div key={i} className="founders-bg-box" style={{ '--i': i }} />
+          ))}
+        </div>
         <div className="founders-bg-noise" />
       </div>
 
@@ -143,7 +197,9 @@ export default function FoundersPage() {
       </nav>
 
       <header className="founders-header">
-        <p className="founders-company">{site.companyName}</p>
+        <p className="founders-company">
+          <Typewriter text={site.companyName} />
+        </p>
         <span className="founders-label">Meet the team</span>
         <h1 className="founders-title">
           <span className="founders-title-line">The minds</span>
@@ -183,23 +239,6 @@ export default function FoundersPage() {
               {site.contactEmail}
             </a>
           </div>
-        </div>
-        <div className="founders-newsletter">
-          <label htmlFor="newsletter-email" className="founders-newsletter-label">
-            Stay updated
-          </label>
-          <form className="founders-newsletter-form" onSubmit={(e) => e.preventDefault()}>
-            <input
-              id="newsletter-email"
-              type="email"
-              placeholder="Your email"
-              className="founders-newsletter-input"
-              aria-label="Email for updates"
-            />
-            <button type="submit" className="founders-newsletter-btn">
-              Subscribe
-            </button>
-          </form>
         </div>
         <div className="founders-footer-bottom">
           <p className="founders-footer-copy">{site.copyright}</p>
