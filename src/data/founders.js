@@ -1,14 +1,14 @@
 /**
- * AI Startup Founder profiles — update names, roles, links, and images for your team.
- * Images: use a URL (as below) or put photos in public/founders/ and set image to '/founders/alex.jpg'.
- * Use square or portrait photos (e.g. 400×400px) for best results.
+ * Founder profiles — update names, roles, bios, quotes, and links.
+ * Optional: quote (one line, shown in italics under bio).
  */
 export const founders = [
   {
     id: '1',
     name: 'Aryan Budukh',
     role: 'CEO',
-    bio: 'Building the future of intelligent systems at Team Atherix.',
+    bio: 'Leads vision and strategy at Team Atherix. Building the future of intelligent systems.',
+    quote: null,
     email: 'aryansbudukh@gmail.com',
     phone: null,
     social: {
@@ -18,13 +18,14 @@ export const founders = [
       github: null,
       website: null,
     },
-    image: '/founders/1.png',
+    image: '/founders/ChatGPT%20Image%20Jan%2029,%202026,%2011_55_21%20PM.png',
   },
   {
     id: '2',
     name: 'Tushar Dhokane',
     role: 'CTO',
     bio: 'Scaling systems and building the tech behind Team Atherix.',
+    quote: null,
     email: 'tushardhokane@gmail.com',
     phone: null,
     social: {
@@ -40,7 +41,8 @@ export const founders = [
     id: '3',
     name: 'Umer Khan Golandaz',
     role: 'COO',
-    bio: 'Operations and growth at Team Atherix.',
+    bio: 'Drives operations and growth at Team Atherix.',
+    quote: null,
     email: 'umerkhan0207@gmail.com',
     phone: null,
     social: {
@@ -56,7 +58,8 @@ export const founders = [
     id: '4',
     name: 'Rohan Naik',
     role: 'CMO',
-    bio: 'Brand and marketing at Team Atherix.',
+    bio: 'Leads brand and marketing at Team Atherix.',
+    quote: null,
     email: 'naikrohan2004@gmail.com',
     phone: null,
     social: {

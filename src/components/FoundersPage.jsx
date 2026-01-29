@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { founders } from '../data/founders'
+import { site } from '../data/site'
 import './FoundersPage.css'
 
 const SocialIcon = ({ type, href }) => {
@@ -48,7 +49,7 @@ const SocialIcon = ({ type, href }) => {
 }
 
 function FounderCard({ founder, index }) {
-  const { name, role, bio, email, phone, social, image } = founder
+  const { name, role, bio, quote, email, phone, social, image } = founder
   const [imageError, setImageError] = useState(false)
   const showImage = image && !imageError
 
@@ -80,6 +81,7 @@ function FounderCard({ founder, index }) {
               src={image}
               alt=""
               className="founder-card-bg-img"
+              loading="lazy"
               onError={() => setImageError(true)}
             />
           ) : (
@@ -91,9 +93,10 @@ function FounderCard({ founder, index }) {
         <div className="founder-card-content">
           <h3 className="founder-name">{name}</h3>
           <p className="founder-bio">{bio}</p>
+          {quote && <p className="founder-quote">"{quote}"</p>}
           <div className="founder-contact">
-            <a href={`mailto:${email}`} className="founder-email">
-              {email}
+            <a href={`mailto:${email}`} className="founder-email founder-email-cta">
+              Email {name.split(' ')[0]}
             </a>
             {phone && (
               <a href={`tel:${phone.replace(/\s/g, '')}`} className="founder-phone">
@@ -115,6 +118,9 @@ function FounderCard({ founder, index }) {
 }
 
 export default function FoundersPage() {
+  const scrollToTeam = () => document.getElementById('team')?.scrollIntoView({ behavior: 'smooth' })
+  const scrollToContact = () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+
   return (
     <main className="founders-page">
       <div className="founders-bg" aria-hidden>
@@ -124,30 +130,85 @@ export default function FoundersPage() {
         <div className="founders-bg-noise" />
       </div>
 
+      <nav className="founders-nav" aria-label="Main">
+        <span className="founders-nav-logo">{site.companyName}</span>
+        <div className="founders-nav-links">
+          <button type="button" onClick={scrollToTeam} className="founders-nav-link">
+            Team
+          </button>
+          <button type="button" onClick={scrollToContact} className="founders-nav-cta">
+            Contact
+          </button>
+        </div>
+      </nav>
+
       <header className="founders-header">
-        <p className="founders-company">Team Atherix</p>
+        <p className="founders-company">{site.companyName}</p>
         <span className="founders-label">Meet the team</span>
         <h1 className="founders-title">
           <span className="founders-title-line">The minds</span>
           <span className="founders-title-line founders-title-gradient">building the future</span>
         </h1>
-        <p className="founders-subtitle">
-          Four founders. One mission. Intelligence that feels human.
-        </p>
+        <p className="founders-tagline">{site.tagline}</p>
+        <p className="founders-subtitle">{site.stats}</p>
+        {site.trustLogos.length > 0 && (
+          <div className="founders-trust">
+            <span className="founders-trust-label">As seen in</span>
+            <div className="founders-trust-logos">
+              {site.trustLogos.map((src, i) => (
+                <img key={i} src={src} alt="" className="founders-trust-logo" />
+              ))}
+            </div>
+          </div>
+        )}
       </header>
 
-      <section className="founders-bento" aria-label="Founder profiles">
+      <p className="founders-mission">{site.mission}</p>
+
+      <section id="team" className="founders-bento" aria-label="Founder profiles">
         {founders.map((founder, i) => (
           <FounderCard key={founder.id} founder={founder} index={i} />
         ))}
       </section>
 
-      <footer className="founders-footer">
-        <p className="founders-footer-brand">Team Atherix</p>
-        <p>Want to build with us?</p>
-        <a href="mailto:hello@atherix.ai" className="founders-cta">
-          Get in touch
-        </a>
+      <footer id="contact" className="founders-footer">
+        <div className="founders-footer-top">
+          <div className="founders-footer-brand-block">
+            <p className="founders-footer-brand">{site.companyName}</p>
+            <p className="founders-footer-tagline">{site.tagline}</p>
+          </div>
+          <div className="founders-footer-cta-block">
+            <p className="founders-footer-cta-label">Get in touch</p>
+            <a href={`mailto:${site.contactEmail}`} className="founders-cta">
+              {site.contactEmail}
+            </a>
+          </div>
+        </div>
+        <div className="founders-newsletter">
+          <label htmlFor="newsletter-email" className="founders-newsletter-label">
+            Stay updated
+          </label>
+          <form className="founders-newsletter-form" onSubmit={(e) => e.preventDefault()}>
+            <input
+              id="newsletter-email"
+              type="email"
+              placeholder="Your email"
+              className="founders-newsletter-input"
+              aria-label="Email for updates"
+            />
+            <button type="submit" className="founders-newsletter-btn">
+              Subscribe
+            </button>
+          </form>
+        </div>
+        <div className="founders-footer-bottom">
+          <p className="founders-footer-copy">{site.copyright}</p>
+          <div className="founders-footer-legal">
+            <a href="/privacy" className="founders-footer-legal-link">Privacy</a>
+            <span className="founders-footer-legal-sep">·</span>
+            <a href="/terms" className="founders-footer-legal-link">Terms</a>
+          </div>
+        </div>
       </footer>
     </main>
   )
