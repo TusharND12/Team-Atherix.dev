@@ -679,6 +679,19 @@
   text-align: center;
 }
 
+/* Card cover / sleeve (debit-card holder) */
+.founders-footer-card-cover {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 14px 14px 56px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.45) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  box-shadow: inset 0 3px 12px rgba(0, 0, 0, 0.5), 0 6px 24px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
 .founders-footer-card {
   position: relative;
   max-width: 480px;
@@ -689,6 +702,24 @@
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
   overflow: hidden;
+  transform: translateY(100%);
+  opacity: 0.6;
+  transform-origin: bottom center;
+}
+
+.founders-footer-card-cover-in-view .founders-footer-card {
+  animation: founders-card-slide-out 1s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
+@keyframes founders-card-slide-out {
+  from {
+    transform: translateY(100%);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .founders-footer-card::before {

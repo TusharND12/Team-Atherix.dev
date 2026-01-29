@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from 'react'
+import { useState, useEffect, useRef, memo } from 'react'
 import { founders } from '../data/founders'
 import { site } from '../data/site'
 import './FoundersPage.css'
@@ -169,6 +169,21 @@ const FounderCard = memo(function FounderCard({ founder, index }) {
 export default function FoundersPage() {
   const scrollToTeam = () => document.getElementById('team')?.scrollIntoView({ behavior: 'smooth' })
   const scrollToContact = () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+  const cardCoverRef = useRef(null)
+  const [cardCoverInView, setCardCoverInView] = useState(false)
+
+  useEffect(() => {
+    const el = cardCoverRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setCardCoverInView(true)
+      },
+      { rootMargin: '0px 0px -80px 0px', threshold: 0.2 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <main className="founders-page">
@@ -233,7 +248,12 @@ export default function FoundersPage() {
             {site.card.title && (
               <h2 className="founders-footer-card-title">{site.card.title}</h2>
             )}
-            <div className="founders-footer-card" aria-label="Company card">
+            <div
+              ref={cardCoverRef}
+              className={`founders-footer-card-cover${cardCoverInView ? ' founders-footer-card-cover-in-view' : ''}`}
+              aria-hidden
+            >
+              <div className="founders-footer-card" aria-label="Company card">
               <div className="founders-footer-card-chip" aria-hidden />
               <p className="founders-footer-card-brand">{site.card.brand}</p>
               <p className="founders-footer-card-tagline">{site.card.tagline}</p>
@@ -258,6 +278,7 @@ export default function FoundersPage() {
                 )}
               </div>
               <p className="founders-footer-card-motto">{site.card.motto}</p>
+              </div>
             </div>
           </div>
         )}
