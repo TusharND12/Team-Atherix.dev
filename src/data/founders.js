@@ -1,6 +1,7 @@
 /**
  * Founder profiles — update names, roles, bios, quotes, and links.
  * Optional: quote (one line, shown in italics under bio).
+ * Rohan LinkedIn: https://www.linkedin.com/in/rohannaik26/
  */
 export const founders = [
   {
