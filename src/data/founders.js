@@ -46,7 +46,7 @@ export const founders = [
     email: 'umerkhan0207@gmail.com',
     phone: null,
     social: {
-      linkedin: 'https://www.linkedin.com/in/umerkhan-g-36186529a',
+      linkedin: 'https://www.linkedin.com/in/umerkhan-g-36186529a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
       instagram: 'https://www.instagram.com/umerkhangolandaz',
       twitter: null,
       github: null,
@@ -63,7 +63,7 @@ export const founders = [
     email: 'naikrohan2004@gmail.com',
     phone: null,
     social: {
-      linkedin: 'https://www.linkedin.com/in/rohannaik26',
+      linkedin: 'https://www.linkedin.com/in/rohannaik26/',
       instagram: 'https://www.instagram.com/rohan.naiik',
       twitter: null,
       github: null,
